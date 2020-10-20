@@ -9,7 +9,7 @@ axios service - baseurl has cars
 car controller - car object description miss spelled
 car service - post car endpoint is wrong
 index.html - button is out of form
-Car model - id is missing underscore
+Car model - id is missing underscore (should cause multiple errors)
 Car Service -add car to page without reloading
 
 
