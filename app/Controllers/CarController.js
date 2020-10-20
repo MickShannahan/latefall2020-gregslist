@@ -25,7 +25,7 @@ export default class CarController {
       year: formData.year.value,
       imgUrl: formData.imgUrl.value,
       price: formData.price.value,
-      description: formData.description.value
+      decsription: formData.description.value
     }
     carService.postCar(newCar)
   }

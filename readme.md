@@ -1,20 +1,16 @@
 gregslist
 ============
 
-### Get Started
+### Problems
 
-```terminal
-> npm i
-> npm run sass
-> npm run serve
-```
+axios service - timeout too short
+axios service - missiont "s" in "http" base url
+axios service - baseurl has cars
+car controller - car object description miss spelled
+car service - post car endpoint is wrong
+index.html - button is out of form
+Car model - id is missing underscore
+Car Service -add car to page without reloading
 
-### AuthConfig
 
-Fill in your AuthConfig with keys from [Auth0](https://auth0.com/)
 
-```javascript
-export const domain = '' 
-export const clientId = '' 
-export const audience = '' 
-```

@@ -1,13 +1,8 @@
 import { ProxyState } from "../AppState.js";
 import Car from "../Models/Car.js";
-import { api } from '../Services/AxiosService.js'
+import { api } from '../Services/AxiosService.js';
 
 class CarService {
-  editCar(editedCar) {
-    api.put("cars/" + editedCar._id, editedCar).then(res => {
-      this.getCars()
-    }).catch(err => console.error(err))
-  }
   constructor() {
     this.getCars()
   }
@@ -18,7 +13,13 @@ class CarService {
   }
 
   postCar(newCar) {
-    api.post("cars", newCar).then(res => {
+    api.post("car", newCar).then(res => {
+      this.getCars()
+    }).catch(err => console.error(err))
+  }
+  editCar(editedCar) {
+    api.put("cars/" + editedCar._id, editedCar).then(res => {
+      //TODO add this to page without reloading
       this.getCars()
     }).catch(err => console.error(err))
   }

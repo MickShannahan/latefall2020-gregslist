@@ -1,5 +1,5 @@
 // @ts-ignore
 export const api = axios.create({
-  baseURL: "https://bcw-sandbox.herokuapp.com/api",
-  timeout: 11000
+  baseURL: "http://bcw-sandbox.herokuapp.com/api/cars",
+  timeout: 300
 })
