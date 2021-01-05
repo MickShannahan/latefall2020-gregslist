@@ -27,7 +27,11 @@ export default class CarController {
       price: formData.price.value,
       description: formData.description.value
     }
-    carService.postCar(newCar)
+    try {
+      carService.postCar(newCar)
+    } catch (error) {
+      console.error(error)
+    }
     formData.reset()
   }
 
@@ -44,12 +48,20 @@ export default class CarController {
       _id: carId
     }
     // @ts-ignore
+    try {
+      carService.editCar(editedCar)
+    } catch (error) {
+      console.error(error)
+    }
     $('#editCarModal-' + carId).modal('toggle')
-    carService.editCar(editedCar)
   }
 
   deleteCar(carId) {
-    carService.deleteCar(carId)
+    try {
+      carService.deleteCar(carId)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
 }
