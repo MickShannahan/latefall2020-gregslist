@@ -6,7 +6,7 @@ export default class Car {
         this.price = data.price
         this.imgUrl = data.imgUrl
         this.description = data.description || "Uknown"
-        this.id = data.id
+        this._id = data._id
     }
 
     get Template() {
@@ -18,8 +18,8 @@ export default class Car {
             <h3>$${this.price}</h3>
             <p>${this.year}</p>
             <p>${this.description}</p>
-            <button class="btn btn-danger btn-block" onclick="app.carController.deleteCar('${this.id}')">Delort</button>
-            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editCarModal-${this.id}">
+            <button class="btn btn-danger btn-block" onclick="app.carController.deleteCar('${this._id}')">Delort</button>
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editCarModal-${this._id}">
             Edit
         </button>
         ${this.Modal}
@@ -29,7 +29,7 @@ export default class Car {
 
     get Modal() {
         return /*html*/` 
-        <div class="modal fade" id="editCarModal-${this.id}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        <div class="modal fade" id="editCarModal-${this._id}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -40,7 +40,7 @@ export default class Car {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="container-fluid" onsubmit="app.carController.editCar(event, '${this.id}')">
+                    <form class="container-fluid" onsubmit="app.carController.editCar(event, '${this._id}')">
                         <div class="row justify-content-center">
                             <div class="col-4">
                                 <div class="form-group row">

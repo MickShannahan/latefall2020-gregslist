@@ -9,18 +9,19 @@ class CarService {
   getCars() {
     api.get("cars").then(res => {
       ProxyState.cars = res.data.data.map(rawCarData => new Car(rawCarData))
+      console.log(res.data.data)
     }).catch(err => console.error(err))
   }
 
   postCar(newCar) {
-    api.post("car", newCar).then(res => {
-      this.getCars()
+    api.post("cars", newCar).then(res => {
+      ProxyState.cars = [...ProxyState.cars, new Car(res.data.data)]
     }).catch(err => console.error(err))
   }
   editCar(editedCar) {
     api.put("cars/" + editedCar._id, editedCar).then(res => {
-      //TODO add this to page without reloading
-      this.getCars()
+      let indexToRemove = ProxyState.cars.findIndex(c => c._id == editedCar.id)
+      ProxyState.cars = ProxyState.cars.splice(indexToRemove, 1, editedCar)
     }).catch(err => console.error(err))
   }
 
