@@ -14,7 +14,16 @@ export default class CarController {
   constructor() {
     ProxyState.on("cars", _draw);
     _draw()
+    this.getCars()
   }
+
+getCars(){
+  try {
+    carService.getCars()
+  } catch (error) {
+    console.error(error)
+  }
+}
 
   postCar(e) {
     e.preventDefault()
