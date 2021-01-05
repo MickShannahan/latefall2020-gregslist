@@ -6,30 +6,28 @@ class CarService {
   constructor() {
     this.getCars()
   }
-  getCars() {
-    api.get("cars").then(res => {
-      ProxyState.cars = res.data.data.map(rawCarData => new Car(rawCarData))
-      console.log(res.data.data)
-    }).catch(err => console.error(err))
+  async getCars() {
+let res = await api.get("cars")
+console.log(res.data.data)
+ProxyState.cars = res.data.data.map(rawCarData => new Car(rawCarData))
   }
 
-  postCar(newCar) {
-    api.post("cars", newCar).then(res => {
-      ProxyState.cars = [...ProxyState.cars, new Car(res.data.data)]
-    }).catch(err => console.error(err))
+  async postCar(newCar) {
+    let res = await api.post("cars", newCar)
+    console.log(res.data)
+    ProxyState.cars = [...ProxyState.cars, new Car(res.data.data)]
   }
-  editCar(editedCar) {
-    api.put("cars/" + editedCar._id, editedCar).then(res => {
-      let indexToRemove = ProxyState.cars.findIndex(c => c._id == editedCar.id)
-      ProxyState.cars = ProxyState.cars.splice(indexToRemove, 1, editedCar)
-    }).catch(err => console.error(err))
+  async editCar(editedCar) {
+    let res = await api.put("cars/" + editedCar._id, editedCar)
+    console.log(res.data)
+    let indexToRemove = ProxyState.cars.findIndex(c => c._id == editedCar.id)
+    ProxyState.cars = ProxyState.cars.splice(indexToRemove, 1, editedCar)
   }
 
-  deleteCar(carId) {
-    api.delete("cars/" + carId).then(res => {
-      console.log(res.data);
-      this.getCars()
-    }).catch(err => console.error(err))
+  async deleteCar(carId) {
+      let res = await api.delete("cars/" + carId)
+      console.log(res.data)
+      ProxyState.cars.filter(c => c._id != carId)
   }
 }
 
